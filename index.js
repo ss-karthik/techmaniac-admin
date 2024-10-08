@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from 'dotenv';
 import ejs from 'ejs';
+import path from 'path';
+
 
 
 dotenv.config();
@@ -13,13 +15,15 @@ let verified = false;
 const verification = process.env.SECRET_MESSAGE;
 
 app.set('view engine', 'ejs');
+app.set('views', path.join('views'));
+
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/enter", (req,res)=>{
-  res.render("Login.ejs");
+  res.render("login.ejs");
 });
 
 app.post("/enter", (req,res)=>{
