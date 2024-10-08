@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/enter", (req,res)=>{
-  res.render("login.ejs");
+  res.render("login");
 });
 
 app.post("/enter", (req,res)=>{
