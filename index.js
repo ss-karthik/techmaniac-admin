@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 const port = 3000;
 const API_URL = "https://techmaniac-backend.vercel.app";
-let verified = true;
+let verified = false;
 const verification = process.env.SECRET_MESSAGE;
 
 
