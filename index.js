@@ -24,7 +24,7 @@ app.post("/enter", (req,res)=>{
   const pwd = req.body.pwd;
   if(pwd !== verification){
     console.log("INCORRECT!");
-    res.redirect("/enter");
+    return res.redirect("/enter");
   } else {
     res.redirect("/");
     verified = true;
@@ -33,7 +33,7 @@ app.post("/enter", (req,res)=>{
 
 app.get("/", async (req, res) => {
   if(!verified){
-    res.redirect("/enter");
+    return res.redirect("/enter");
   }
   try {
     const response = await axios.get(`${API_URL}/posts`);
@@ -46,7 +46,7 @@ app.get("/", async (req, res) => {
 
 app.get("/new", (req, res) => {
   if(!verified){
-    res.redirect("/enter");
+    return res.redirect("/enter");
   }
   res.render("modify.ejs", { heading: "New Post", submit: "Create Post" });
 });
@@ -57,7 +57,7 @@ app.get("/new", (req, res) => {
 
 app.get("/edit/:id", async (req, res) => {
   if(!verified){
-    res.redirect("/enter");
+    return res.redirect("/enter");
   }
   try {
     const response = await axios.get(`${API_URL}/posts/${req.params.id}`);
@@ -98,7 +98,7 @@ app.post("/api/posts/:id", async (req, res) => {
 
 app.get("/api/posts/delete/:id", async (req, res) => {
   if(!verified){
-    res.redirect("/enter");
+    return res.redirect("/enter");
   }
   try {
     await axios.delete(`${API_URL}/posts/${req.params.id}`);
