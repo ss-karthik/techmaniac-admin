@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import dotenv from 'dotenv';
+import ejs from 'ejs';
 
 
 dotenv.config();
@@ -11,6 +12,7 @@ const API_URL = "https://techmaniac-backend.vercel.app";
 let verified = false;
 const verification = process.env.SECRET_MESSAGE;
 
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
